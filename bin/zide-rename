@@ -30,6 +30,10 @@ while [[ $# -gt 0 ]]; do
       show_help
       exit 0
       ;;
+    *)
+      # Not an option, must be a positional argument
+      break
+      ;;
   esac
 done
 
@@ -43,7 +47,7 @@ if [[ -n "${name}" ]]; then
   zellij action rename-tab "${name}"
 fi
 
-if [[ -n "${name}" ]]; then
+if [[ -n "${name}" && "$1" != "__basename__" ]]; then
   # Do our best to name the session, but swallow any errors if it fails
   zellij action rename-session "${name}" 2> /dev/null
 fi

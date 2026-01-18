@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+
+if [ -z "$ZIDE_DIR" ]; then
+  # Figure out where zide is installed based on where the script lives
+  if command -v readlink >/dev/null 2>&1; then
+    script_dir=$(dirname "$(readlink -f "$0")")
+  else
+    script_dir=$(cd -- "$(dirname -- "$0")" && pwd)
+  fi
+
+  export ZIDE_DIR=$(dirname "$script_dir")
+fi
+
 source "${ZIDE_DIR}/bin/lib/findLayoutConfig.sh"
 
 read -r -d '' HELP_TEXT << EOF

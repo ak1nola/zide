@@ -1,5 +1,6 @@
 layout {
     tab {
+        compact_bar size=1
         floating_panes {
             zide_rename
         }
@@ -7,11 +8,12 @@ layout {
             filepicker size=40 name="picker"
             editor
         }
-        compact_bar size=1
+        status_bar size=1
     }
 
     swap_tiled_layout name="compact" {
         tab exact_panes=4 {
+            compact_bar size=1
             pane split_direction="vertical" {
                 filepicker size=40 name="picker"
                 pane split_direction="horizontal" {
@@ -19,10 +21,11 @@ layout {
                     pane
                 }
             }
-            compact_bar size=1
+            status_bar size=1
         }
 
         tab min_panes=5 {
+            compact_bar size=1
             pane split_direction="vertical" {
                 filepicker size=40 name="picker"
                 pane split_direction="horizontal" {
@@ -33,12 +36,13 @@ layout {
                     }
                 }
             }
-            compact_bar size=1
+            status_bar size=1
         }
     }
 
     swap_tiled_layout name="wide" {
         tab exact_panes=4 {
+            compact_bar size=1
             pane split_direction="vertical" {
                 filepicker size=40 name="picker"
                 editor
@@ -46,10 +50,11 @@ layout {
                     pane
                 }
             }
-            compact_bar size=1
+            status_bar size=1
         }
 
         tab min_panes=5 {
+            compact_bar size=1
             pane split_direction="vertical" {
                 filepicker size=40 name="picker"
                 editor
@@ -58,7 +63,7 @@ layout {
                     pane
                 }
             }
-            compact_bar size=1
+            status_bar size=1
         }
     }
 
@@ -76,10 +81,22 @@ layout {
         plugin location="compact-bar"
     }
 
+    pane_template name="status_bar" {
+        borderless true
+        plugin location="status-bar"
+    }
+
     pane_template name="zide_rename" command="zide-rename" close_on_exit=true
 
     new_tab_template {
-        pane
         compact_bar size=1
+        floating_panes {
+            zide_rename
+        }
+        pane split_direction="vertical" {
+            filepicker size=40 name="picker"
+            editor
+        }
+        status_bar size=1
     }
 }

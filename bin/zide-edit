@@ -80,6 +80,8 @@ if [ ! -f "${path}" ] && [ ${#escaped_paths[@]} -eq 1 ]; then
 	# a static value makes sure we don't end up with a long wait time for short paths that don't
 	# need to wait as long.
 	sleep $(echo "${#path} / 150" | bc -l)
+	zide-rename "${name:-__basename__}"
+	exit
 fi
 
 # Open paths in the editor
